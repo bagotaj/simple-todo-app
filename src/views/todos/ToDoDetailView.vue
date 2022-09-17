@@ -2,6 +2,7 @@
   <p>{{ todo.todo }}</p>
   <a :href="todo.link" target="_blank">{{ todo.link }}</a>
   <button @click="stopTimer">Leállít</button>
+  <button class="done" @click="todo.setDoneToDos">Kész</button>
 </template>
 
 <script>
@@ -21,7 +22,7 @@ export default {
         startTimer() {
             this.timer = setInterval(() => {
                 alert(this.todo.todo)
-            }, 600000)
+            }, 60000)
         },
         stopTimer() {
             clearInterval(this.timer)
@@ -30,3 +31,9 @@ export default {
 
 }
 </script>
+
+<style>
+    .done {
+        background: #AD4244;
+    }
+</style>
