@@ -1,14 +1,15 @@
 <template>
-  <HomeView />
+  <nav>
+    <router-link to="/">Home</router-link> |
+    <router-link :to="{ name: 'about'}">Az appról</router-link> |
+    <router-link :to="{ name: 'todos'}">Teendők</router-link>
+  </nav>
+  <router-view/>
 </template>
 
 <script>
-import HomeView from './views/HomeView.vue';
 export default {
   name: 'App',
-  components: {
-    HomeView
-}
 }
 </script>
 
@@ -20,5 +21,17 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+nav {
+  padding: 20px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #454545;
+}
+
+nav a.router-link-exact-active {
+  color: #AD4244;
 }
 </style>
