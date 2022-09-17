@@ -28,9 +28,13 @@
       },
       methods: {
           handleSubmit() {
-            this.todos.push({todo: this.todo, link: this.link, id: Math.random() * 10})
+            this.todos.push({todo: this.todo, link: this.link, done: false, id: Math.random() * 10})
             this.todo = '',
             this.link = ''
+          }
+          ,
+          setDoneToDos() {
+            
           }
       }
   }
