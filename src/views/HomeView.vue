@@ -31,8 +31,7 @@
             this.todos.push({todo: this.todo, link: this.link, done: false, id: Math.random() * 10})
             this.todo = '',
             this.link = ''
-          }
-          ,
+          },
           setDoneToDos() {
             
           }
