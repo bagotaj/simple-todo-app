@@ -14,6 +14,8 @@
   
   <script>
   import ToDosView from '@/views/todos/ToDosView.vue';
+  import { dbconnection } from '@/composables/firebaseapikey';
+  import { collection, addDoc } from "firebase/firestore"; 
 
   export default {
     components: {
@@ -28,6 +30,7 @@
       },
       methods: {
           handleSubmit() {
+            addDoc(collection(dbconnection, "todos"), {todo: this.todo, link: this.link, done: false, owner: this.$store.state.owner, id: Math.random() * 10});
             this.todos.push({todo: this.todo, link: this.link, done: false, owner: this.$store.state.owner, id: Math.random() * 10});
             this.todo = '';
             this.link = '';
