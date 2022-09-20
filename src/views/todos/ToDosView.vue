@@ -30,12 +30,9 @@
       display: flex;
       flex-direction: column;
     }
-    .todo:hover {
-      background: #ddd;
-    }
     .todo a {
       text-decoration: none;
-      color:#AD4244;
+      color:#FF3E24;
       cursor: pointer;
     }
   </style>
