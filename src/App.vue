@@ -1,15 +1,13 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link :to="{ name: 'about'}">Az appról</router-link> |
-    <router-link :to="{ name: 'todos'}">Teendők</router-link>
-  </nav>
-  <router-view/>
+  <NavBar />
+  <router-view />
 </template>
 
 <script>
+import NavBar from './components/NavBar.vue';
 export default {
-  name: 'App',
+    name: "App",
+    components: { NavBar }
 }
 </script>
 
@@ -32,6 +30,10 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #AD4244;
+  color: #FF3E24;
+}
+
+.normalbtn {
+  margin-right: 10px;
 }
 </style>
