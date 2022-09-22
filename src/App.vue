@@ -4,11 +4,26 @@
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue';
-export default {
-    name: "App",
-    components: { NavBar }
-}
+  import { firebase } from "./composables/firebaseapikey";
+  import { getAuth, onAuthStateChanged } from "firebase/auth";
+  import NavBar from './components/NavBar.vue';
+  export default {
+      name: "App",
+      components: { NavBar },
+      mounted() {
+        const auth = getAuth(firebase);
+        onAuthStateChanged(auth, (user) => {
+          if (user !== null) {
+            this.$store.commit('setOwner', { user: user.displayName });
+            this.$store.commit('setDisplay', { dvalue: true });
+            this.$router.push("/home");
+          } else {
+            this.$store.commit('setDisplay', { dvalue: false });
+            this.$router.push("/");
+          }
+        });
+    }
+  }
 </script>
 
 <style>
