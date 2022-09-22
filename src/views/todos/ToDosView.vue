@@ -1,7 +1,7 @@
 <template>
   <h1>Teendők</h1>
-    <div v-if="todos.length">
-      <div v-for="todo in todos" :key="todo.id" class="todo">
+    <div v-if="$store.state.todos.length">
+      <div v-for="todo in $store.state.todos" :key="todo.id" class="todo">
         <ToDoDetailView :todo="todo" />
       </div>
     </div>
@@ -11,11 +11,11 @@
   import ToDoDetailView from './ToDoDetailView.vue';
   
   export default {
-    props: ["todos"],
+    // props: ["todos"],
     data() {
         return {};
     },
-    components: { ToDoDetailView }
+    components: { ToDoDetailView },
 }
   </script>
   
