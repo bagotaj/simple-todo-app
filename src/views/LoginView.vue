@@ -71,7 +71,7 @@
                             displayName: this.inputUsername
                         });
                     }
-                    this.$store.commit('setDisplay');
+                    this.$store.commit('setDisplay', { dvalue: true });
                     this.$store.commit('setOwner', { user: user.displayName });
                     this.$router.push("/home");
                 })
