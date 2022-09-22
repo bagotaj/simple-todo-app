@@ -9,36 +9,44 @@
           <button>Hozzáadás</button>
       </div>
     </form>
-    <ToDosView :todos="todos" />
+    <ToDosView />
   </template>
   
   <script>
   import ToDosView from '@/views/todos/ToDosView.vue';
   import { dbconnection } from '@/composables/firebaseapikey';
-  import { collection, addDoc } from "firebase/firestore"; 
+  import { collection, addDoc, getDocs } from "firebase/firestore"; 
 
   export default {
     components: {
         ToDosView
     },
-      data() {
-          return {
+    data() {
+        return {
             todo: '',
             link: '',
-            todos: [],
-          }
-      },
-      methods: {
-          handleSubmit() {
-            addDoc(collection(dbconnection, "todos"), {todo: this.todo, link: this.link, done: false, owner: this.$store.state.owner, id: Math.random() * 10});
-            this.todos.push({todo: this.todo, link: this.link, done: false, owner: this.$store.state.owner, id: Math.random() * 10});
+            // todos: [],
+        }
+    },
+    async mounted() {
+        if(this.$store.state.todos.length > 0) {
+            this.$store.commit('setTodosEmpty');
+        }
+        const querySnapshot = await getDocs(collection(dbconnection, "todos"));
+        querySnapshot.forEach((doc) => {
+            let todoData = {...doc.data(), docid: doc.id};
+            this.$store.commit('addTodo', todoData);
+        });
+    },
+    methods: {
+        handleSubmit() {
+            let todoData = {todo: this.todo, link: this.link, done: false, owner: this.$store.state.owner, id: Math.random() * 10}
+            addDoc(collection(dbconnection, "todos"), todoData);
+            this.$store.commit('setTodos', todoData)
             this.todo = '';
             this.link = '';
-          },
-          setDoneToDos() {
-            
-          }
-      }
+        }
+    }
   }
   </script>
   
@@ -77,6 +85,10 @@
           color: white;
           border-radius: 20px;
           cursor: pointer;
+      }
+      button:hover {
+        background: #0b6dff;
+        opacity: 70%;
       }
       .submit {
           text-align: center;
