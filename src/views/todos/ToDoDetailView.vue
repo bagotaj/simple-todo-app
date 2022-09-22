@@ -23,7 +23,7 @@ export default {
         startTimer() {
             this.timer = setInterval(() => {
                 alert(this.todo.todo)
-            }, 60000)
+            }, 600000)
         },
         stopTimer() {
             clearInterval(this.timer)
@@ -36,6 +36,10 @@ export default {
 <style>
     .done {
         background: #FF3E24;
+    }
+    .done:hover {
+        background: #FF3E24;
+        opacity: 70%;
     }
     .right {
         display: flex;
