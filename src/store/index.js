@@ -12,12 +12,24 @@ export default createStore({
     },
   },
   mutations: {
-    setDisplay(state) {
-      state.display = !state.display;
+    setTodosEmpty(state) {
+      state.todos = [];
+    },
+    addTodo(state, playload) {
+      state.todos.push(playload);
+    },
+    setDoneTodo(state, playload) {
+      state.todos.forEach((todo) => {
+        if (todo.id === playload.id) {
+          todo.done = true;
+        }
+      });
+    },
+    setDisplay(state, playload) {
+      state.display = playload.dvalue;
     },
     setOwner(state, playload) {
       state.owner = playload.user;
-      console.log(state.owner, playload.user);
     },
   },
   actions: {},
