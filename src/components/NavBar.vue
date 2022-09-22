@@ -1,5 +1,5 @@
 <template>
-  <nav v-if="display">
+  <nav v-if="$store.state.display">
     <router-link to="/home">Home</router-link> |
     <router-link :to="{ name: 'about'}">Az appról</router-link> |
     <router-link :to="{ name: 'todos'}">Teendők</router-link> |
@@ -20,15 +20,11 @@ import { firebase } from '../composables/firebaseapikey';
 
 export default {
   methods: {
-    display() {
-      console.log(this.$store.state.display)
-      return this.$store.state.display
-    },
     logout() {
       const auth = getAuth(firebase);
       signOut(auth).then(() => {
       // Sign-out successful.
-      this.$store.commit('setDisplay');
+      this.$store.commit('setDisplay', { dvalue: true });
       this.$router.push("/");
       console.log('Successful sign-out')
       }).catch((error) => {
