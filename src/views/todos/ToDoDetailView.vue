@@ -2,8 +2,8 @@
   <p class="right fontsize12">{{ todo.owner }}</p>
   <p>{{ todo.todo }}</p>
   <a :href="todo.link" target="_blank">{{ todo.link }}</a>
-  <button @click="stopTimer">Leállít</button>
-  <button class="done" @click="todo.setDoneToDos">Kész</button>
+  <button @click="stopTimer" :class="{ stoped: stoped }">Leállít</button>
+  <button class="done" @click="$store.dispatch('updateTodoField', {todoId: todo.id, done: { done: true }})">Kész</button>
 </template>
 
 <script>
@@ -12,6 +12,7 @@ export default {
     data() {
         return {
             timer: null,
+            stoped: false,
         }
     },
     mounted() {
@@ -26,6 +27,7 @@ export default {
             }, 600000)
         },
         stopTimer() {
+            this.stoped = true;
             clearInterval(this.timer)
         }
     }
@@ -34,6 +36,10 @@ export default {
 </script>
 
 <style>
+    .stoped {
+        pointer-events: none;
+        opacity: 0.3;
+    }
     .done {
         background: #FF3E24;
     }
