@@ -45,13 +45,13 @@ export default createStore({
     async updateTodoField({ commit, state }, playload) {
       const searchingTodo = query(
         collection(dbconnection, 'todos'),
-        where('id', '==', playload)
+        where('id', '==', playload.todoId)
       );
       const querySnapshot = await getDocs(searchingTodo);
       querySnapshot.forEach((todo) => {
         const docRef = doc(dbconnection, 'todos', todo.id);
-        updateDoc(docRef, { done: true });
-        commit('setDoneTodo', playload);
+        updateDoc(docRef, playload.done);
+        commit('setDoneTodo', playload.todoId);
         state.todos = this.getters.doneTodos;
       });
     },
