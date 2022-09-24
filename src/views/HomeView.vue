@@ -42,7 +42,7 @@
         handleSubmit() {
             let todoData = {todo: this.todo, link: this.link, done: false, owner: this.$store.state.owner, id: Math.random() * 10}
             addDoc(collection(dbconnection, "todos"), todoData);
-            this.$store.commit('setTodos', todoData)
+            this.$store.commit('addTodo', todoData)
             this.todo = '';
             this.link = '';
         }
