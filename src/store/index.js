@@ -1,4 +1,13 @@
 import { createStore } from 'vuex';
+import {
+  doc,
+  collection,
+  query,
+  where,
+  getDocs,
+  updateDoc,
+} from 'firebase/firestore';
+import { dbconnection } from '@/composables/firebaseapikey';
 
 export default createStore({
   state: {
@@ -8,7 +17,7 @@ export default createStore({
   },
   getters: {
     doneTodos: (state) => {
-      return state.todos.filter((todo) => todo.done);
+      return state.todos.filter((todo) => !todo.done);
     },
   },
   mutations: {
@@ -20,7 +29,7 @@ export default createStore({
     },
     setDoneTodo(state, playload) {
       state.todos.forEach((todo) => {
-        if (todo.id === playload.id) {
+        if (todo.id === playload) {
           todo.done = true;
         }
       });
@@ -32,6 +41,20 @@ export default createStore({
       state.owner = playload.user;
     },
   },
-  actions: {},
+  actions: {
+    async updateTodoField({ commit, state }, playload) {
+      const searchingTodo = query(
+        collection(dbconnection, 'todos'),
+        where('id', '==', playload)
+      );
+      const querySnapshot = await getDocs(searchingTodo);
+      querySnapshot.forEach((todo) => {
+        const docRef = doc(dbconnection, 'todos', todo.id);
+        updateDoc(docRef, { done: true });
+        commit('setDoneTodo', playload);
+        state.todos = this.getters.doneTodos;
+      });
+    },
+  },
   modules: {},
 });
