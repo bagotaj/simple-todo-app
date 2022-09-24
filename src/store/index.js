@@ -14,6 +14,8 @@ export default createStore({
     todos: [],
     display: false,
     owner: null,
+    timers: {},
+    stoped: false,
   },
   getters: {
     doneTodos: (state) => {
@@ -40,6 +42,16 @@ export default createStore({
     setOwner(state, payload) {
       state.owner = payload.user;
     },
+    startTimer(state, payload) {
+      const timerId = setInterval(() => {
+        alert(payload.todo);
+      }, 600000);
+      state.timers[payload.todoId] = timerId;
+    },
+    stopTimer(state, payload) {
+      state.stoped = true;
+      clearInterval(state.timers[payload]);
+    },
   },
   actions: {
     async updateTodoField({ commit, state }, payload) {
@@ -52,7 +64,13 @@ export default createStore({
         const docRef = doc(dbconnection, 'todos', todo.id);
         updateDoc(docRef, payload.done);
         commit('setDoneTodo', payload.todoId);
+        commit('stopTimer', payload.todoId);
         state.todos = this.getters.doneTodos;
+      });
+    },
+    setTimeout({ commit }, payload) {
+      setTimeout(() => {
+        commit('startTimer', payload);
       });
     },
   },
