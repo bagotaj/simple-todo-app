@@ -2,36 +2,16 @@
   <p class="right fontsize12">{{ todo.owner }}</p>
   <p>{{ todo.todo }}</p>
   <a :href="todo.link" target="_blank">{{ todo.link }}</a>
-  <button @click="stopTimer" :class="{ stoped: stoped }">Leállít</button>
+  <button @click="$store.commit('stopTimer', todo.id)" :class="{ stoped: $store.state.stoped }">Leállít</button>
   <button class="done" @click="$store.dispatch('updateTodoField', {todoId: todo.id, done: { done: true }})">Kész</button>
 </template>
 
 <script>
 export default {
     props: ['todo'],
-    data() {
-        return {
-            timer: null,
-            stoped: false,
-        }
-    },
     mounted() {
-        setTimeout(() => {
-            this.startTimer()
-        })
+        this.$store.dispatch('setTimeout', {todo: this.todo.todo, todoId: this.todo.id});
     },
-    methods: {
-        startTimer() {
-            this.timer = setInterval(() => {
-                alert(this.todo.todo)
-            }, 600000)
-        },
-        stopTimer() {
-            this.stoped = true;
-            clearInterval(this.timer)
-        }
-    }
-
 }
 </script>
 
