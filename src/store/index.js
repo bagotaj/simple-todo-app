@@ -24,34 +24,34 @@ export default createStore({
     setTodosEmpty(state) {
       state.todos = [];
     },
-    addTodo(state, playload) {
-      state.todos.push(playload);
+    addTodo(state, payload) {
+      state.todos.push(payload);
     },
-    setDoneTodo(state, playload) {
+    setDoneTodo(state, payload) {
       state.todos.forEach((todo) => {
-        if (todo.id === playload) {
+        if (todo.id === payload) {
           todo.done = true;
         }
       });
     },
-    setDisplay(state, playload) {
-      state.display = playload.dvalue;
+    setDisplay(state, payload) {
+      state.display = payload.dvalue;
     },
-    setOwner(state, playload) {
-      state.owner = playload.user;
+    setOwner(state, payload) {
+      state.owner = payload.user;
     },
   },
   actions: {
-    async updateTodoField({ commit, state }, playload) {
+    async updateTodoField({ commit, state }, payload) {
       const searchingTodo = query(
         collection(dbconnection, 'todos'),
-        where('id', '==', playload.todoId)
+        where('id', '==', payload.todoId)
       );
       const querySnapshot = await getDocs(searchingTodo);
       querySnapshot.forEach((todo) => {
         const docRef = doc(dbconnection, 'todos', todo.id);
-        updateDoc(docRef, playload.done);
-        commit('setDoneTodo', playload.todoId);
+        updateDoc(docRef, payload.done);
+        commit('setDoneTodo', payload.todoId);
         state.todos = this.getters.doneTodos;
       });
     },
