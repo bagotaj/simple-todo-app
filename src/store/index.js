@@ -15,7 +15,7 @@ export default createStore({
     display: false,
     owner: null,
     timers: {},
-    stoped: false,
+    stopped: {},
   },
   getters: {
     doneTodos: (state) => {
@@ -28,6 +28,9 @@ export default createStore({
     },
     addTodo(state, payload) {
       state.todos.push(payload);
+    },
+    setStoped(state, payload) {
+      state.stopped[payload.todoId] = payload.stopped;
     },
     setDoneTodo(state, payload) {
       state.todos.forEach((todo) => {
@@ -43,13 +46,15 @@ export default createStore({
       state.owner = payload.user;
     },
     startTimer(state, payload) {
+      console.log('startTimer', payload);
       const timerId = setInterval(() => {
         alert(payload.todo);
       }, 600000);
       state.timers[payload.todoId] = timerId;
     },
     stopTimer(state, payload) {
-      state.stoped = true;
+      state.stopped[payload] = true;
+      console.log('stopTimer', payload);
       clearInterval(state.timers[payload]);
     },
   },
@@ -72,6 +77,7 @@ export default createStore({
       setTimeout(() => {
         commit('startTimer', payload);
       });
+      commit('setStoped', { todoId: payload.todoId, stopped: false });
     },
   },
   modules: {},
