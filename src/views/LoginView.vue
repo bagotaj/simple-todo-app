@@ -21,6 +21,7 @@
                 type="email"
                 class="form-control"
                 name="inputEmail1"
+                autocomplete="email"
                 v-model="inputEmail1"
                 placeholder="email@email.com"
                 aria-describedby="emailHelp"
@@ -31,14 +32,14 @@
             </div>
             <div class="mb-3">
               <label for="inputPassword1" class="form-label">Jelszó</label>
-              <input type="password" class="form-control" name="inputPassword1"
+              <input type="password" class="form-control" name="inputPassword1" autocomplete="password"
             placeholder="password123" v-model="inputPassword1" />
             </div>
             <div class="mb-3">
               <button type="submit" class="normalbtn" id="submitButton">
                 Belépés
               </button>
-              <button type="button" class="normalbtn" id="switch-register" @click="moveToRegister">
+              <button type="button" class="normalbtn stopped" id="switch-register" @click="moveToRegister">
                 Regisztráció
               </button>
             </div>
