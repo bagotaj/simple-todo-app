@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="handleSubmit">
       <label>Teendő:</label>
-      <input type="text" required v-model="todo">
+      <textarea required v-model="todo"></textarea>
       <label>Link:</label>
       <input type="url" v-model="link">
   
@@ -25,7 +25,6 @@
         return {
             todo: '',
             link: '',
-            // todos: [],
         }
     },
     async mounted() {
@@ -68,7 +67,7 @@
           letter-spacing: 1px;
           font-weight: bold;
       }
-      input {
+      input, textarea {
           display: block;
           padding: 10px 6px;
           width: 100%;
