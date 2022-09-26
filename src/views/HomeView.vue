@@ -52,7 +52,7 @@
   <style>
       form {
           max-width: 420px;
-          margin: 30px auto;
+          margin: 10px auto 30px auto;
           background: white;
           text-align: left;
           padding: 40px;
@@ -75,6 +75,7 @@
           border: none;
           border-bottom: 1px solid #ddd;
           color: #454545;
+          letter-spacing: 1px;
       }
       button {
           background: #0b6dff;
