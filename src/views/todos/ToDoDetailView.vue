@@ -17,6 +17,9 @@ export default {
             const URLMatcher = new RegExp('(?:(?:https?|ftp|file)://|www.|ftp.)(?:([-A-Z0-9+&@#/%=~_|$?!:,.]*)|[-A-Z0-9+&@#/%=~_|$?!:,.])*(?:([-A-Z0-9+&@#/%=~_|$?!:,.]*)|[A-Z0-9+&@#/%=~_|$])', 'igm')
             return this.todo.todo.replace(URLMatcher, match => `<a href="${match}" target="_blank">${match}</a>`)
         }
+    },
+    unmounted() {
+        this.$store.commit('stopTimer', this.todo.id);
     }
 }
 </script>
@@ -24,6 +27,7 @@ export default {
 <style>
     p {
         white-space: pre-wrap;
+        letter-spacing: 1px;
     }
     .stopped {
         pointer-events: none;
