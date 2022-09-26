@@ -8,7 +8,7 @@
           {{ errorMessage }}
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        <div class="container form-width" id="loginForm">
+        <div class="margin-top-80" id="loginForm">
           <h1>Belépés</h1>
           <form @submit.prevent="login">
             <div class="mb-3">
@@ -16,11 +16,11 @@
               <input type="text" class="form-control" name="inputUsername" v-model="inputUsername"/>
             </div>
             <div class="mb-3">
-              <label for="inputEmail1" class="form-label">Email cím</label>
+              <label for="email" class="form-label">Email cím</label>
               <input
                 type="email"
                 class="form-control"
-                name="inputEmail1"
+                name="email"
                 autocomplete="email"
                 v-model="inputEmail1"
                 placeholder="email@email.com"
@@ -31,8 +31,8 @@
               </div>
             </div>
             <div class="mb-3">
-              <label for="inputPassword1" class="form-label">Jelszó</label>
-              <input type="password" class="form-control" name="inputPassword1" autocomplete="password"
+              <label for="password" class="form-label">Jelszó</label>
+              <input type="password" class="form-control" name="password" autocomplete="password"
             placeholder="password123" v-model="inputPassword1" />
             </div>
             <div class="mb-3">
@@ -87,3 +87,16 @@
         }
   }
   </script>
+
+  <style>
+    .margin-top-80 {
+      margin-top: 80px;
+    }
+    .form-text {
+      margin: 25px 0 15px;
+      font-size: 0.6em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: normal;
+    }
+  </style>
