@@ -33,15 +33,27 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+body {
+  margin: 0;
 }
 nav {
-  padding: 20px;
+  padding: 60px 20px 40px 20px;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  background: #f4f4f4;
 }
 
 nav a {
   font-weight: bold;
   color: #454545;
+  text-decoration: none;
+}
+
+nav a:hover {
+  font-weight: normal;
 }
 
 nav a.router-link-exact-active {
