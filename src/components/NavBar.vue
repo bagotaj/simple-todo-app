@@ -26,10 +26,7 @@ export default {
       // Sign-out successful.
       this.$store.commit('setDisplay', { dvalue: false });
 
-      let timers = this.$store.state.timers;
-      for(const timer in timers) {
-        this.$store.commit('stopTimer', timer);
-      }
+      this.$store.dispatch('stopEveryTimers');
 
       this.$router.push("/");
       console.log('Successful sign-out')
@@ -41,7 +38,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>
