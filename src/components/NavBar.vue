@@ -25,11 +25,8 @@ export default {
       signOut(auth).then(() => {
       // Sign-out successful.
       this.$store.commit('setDisplay', { dvalue: false });
-
-      this.$store.dispatch('stopEveryTimers');
-
       this.$router.push("/");
-      console.log('Successful sign-out')
+      console.log('Successful sign-out');
       }).catch((error) => {
           this.errorMessage = error.message;
           console.log(error.message);
