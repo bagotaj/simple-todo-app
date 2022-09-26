@@ -46,14 +46,14 @@ export default createStore({
       state.owner = payload.user;
     },
     startTimer(state, payload) {
-      console.log(payload.todoId);
+      console.log('startTimer', payload.todoId);
       const timerId = setInterval(() => {
         alert(payload.todo);
       }, 600000);
       state.timers[payload.todoId] = timerId;
     },
     stopTimer(state, payload) {
-      console.log(payload);
+      console.log('stopTimer', payload);
       state.stopped[payload] = true;
       clearInterval(state.timers[payload]);
     },
