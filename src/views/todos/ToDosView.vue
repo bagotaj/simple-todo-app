@@ -1,7 +1,7 @@
 <template>
   <h1>Teendők</h1>
     <div v-if="$store.state.todos.length">
-      <div v-for="todo in $store.state.todos" :key="todo.id">
+      <div v-for="todo in reversedTodos" :key="todo.id">
         <div v-if="!todo.done" class="todo">
           <ToDoDetailView :todo="todo" />
         </div>
@@ -17,6 +17,11 @@
         return {};
     },
     components: { ToDoDetailView },
+    computed: {
+      reversedTodos() {
+        return [...this.$store.state.todos].reverse()
+      }
+    }
 }
   </script>
   
