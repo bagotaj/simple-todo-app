@@ -1,7 +1,7 @@
 <template>
   <p class="right fontsize12">{{ todo.owner }}</p>
   <p v-html="urlMatcherInTodo"></p>
-  <a :href="todo.link" target="_blank">{{ todo.link }}</a>
+  <a :href="todo.link" target="_blank">{{ snippetURL.length > 3 ? snippetURL : '' }}</a>
   <button @click="$store.commit('stopTimer', todo.id)" :class="{ stopped: $store.state.stopped[todo.id] }">Leállít</button>
   <button class="done" @click="$store.dispatch('updateTodoField', {todoId: todo.id, done: { done: true }})">Kész</button>
 </template>
@@ -15,7 +15,10 @@ export default {
     computed: {
         urlMatcherInTodo() {
             const URLMatcher = new RegExp('(?:(?:https?|ftp|file)://|www.|ftp.)(?:([-A-Z0-9+&@#/%=~_|$?!:,.]*)|[-A-Z0-9+&@#/%=~_|$?!:,.])*(?:([-A-Z0-9+&@#/%=~_|$?!:,.]*)|[A-Z0-9+&@#/%=~_|$])', 'igm')
-            return this.todo.todo.replace(URLMatcher, match => `<a href="${match}" target="_blank">${match}</a>`)
+            return this.todo.todo.replace(URLMatcher, match => `<a href="${match}" target="_blank">${match.substring(0, 50) + '...'}</a>`)
+        },
+        snippetURL() {
+            return this.todo.link.substring(0, 50) + '...'
         }
     },
     unmounted() {
