@@ -13,9 +13,6 @@
   import ToDoDetailView from './ToDoDetailView.vue';
   
   export default {
-    data() {
-        return {};
-    },
     components: { ToDoDetailView },
     computed: {
       reversedTodos() {
