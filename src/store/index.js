@@ -39,6 +39,15 @@ export default createStore({
         }
       });
     },
+    setTodoChanging(state, payload) {
+      let objKey = Object.keys(state.todos);
+
+      state.todos.forEach((todo) => {
+        if (todo.id === payload.todoId) {
+          todo[objKey] = payload[objKey];
+        }
+      });
+    },
     setDisplay(state, payload) {
       state.display = payload.dvalue;
     },
@@ -67,10 +76,12 @@ export default createStore({
       const querySnapshot = await getDocs(searchingTodo);
       querySnapshot.forEach((todo) => {
         const docRef = doc(dbconnection, 'todos', todo.id);
-        updateDoc(docRef, payload.done);
-        commit('setDoneTodo', payload.todoId);
-        commit('stopTimer', payload.todoId);
-        state.todos = this.getters.doneTodos;
+        updateDoc(docRef, payload.task);
+        if (payload.task.done) {
+          commit('setDoneTodo', payload.todoId);
+          commit('stopTimer', payload.todoId);
+          state.todos = this.getters.doneTodos;
+        }
       });
     },
     setTimeout({ commit }, payload) {
