@@ -1,7 +1,7 @@
 <template>
   <p class="right fontsize12">{{ todo.owner }}</p>
   <div class="divCenter" v-show="!showField('todoText')" @click="focusField('todoText')">
-    <p class="p90" v-html="todoInputFields.todoText"></p><span class="span10" @click="focusField('todoText')">+</span>
+    <p class="p90" v-html="urlMatcherInTodo(todoInputFields.todoText)"></p><span class="span10" @click="focusField('todoText')">+</span>
   </div>
   <div class="divCenter" v-show="showField('todoText')" @focus="focusField('todoText')" @blur="blurField">
       <input class="p90" type="text" v-model="todoInputFields.todoText" /><span class="span10del" @click="blurField">+</span>
@@ -22,7 +22,7 @@ export default {
     data() {
         return {
             todoInputFields : {
-                todoText: this.urlMatcherInTodo(this.todo.todo),
+                todoText: this.todo.todo,
                 link: this.todo.link
       },
             editField : ''
