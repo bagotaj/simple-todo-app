@@ -12,10 +12,6 @@
           <h1>Belépés</h1>
           <form @submit.prevent="login">
             <div class="mb-3">
-              <label for="inputUsername" class="form-label">Felhasználónév</label>
-              <input type="text" class="form-control" name="inputUsername" v-model="inputUsername"/>
-            </div>
-            <div class="mb-3">
               <label for="email" class="form-label">Email cím</label>
               <input
                 type="email"
@@ -49,7 +45,7 @@
   </template>
   
   <script>
-    import { getAuth, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
+    import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
     import { firebase } from '../composables/firebaseapikey'
   
       export default {
@@ -67,11 +63,7 @@
                 signInWithEmailAndPassword(auth, this.inputEmail1, this.inputPassword1)
                     .then(() => {
                     let user = auth.currentUser;
-                    if (user.displayName !== this.inputUsername) {
-                        updateProfile(auth.currentUser, {
-                            displayName: this.inputUsername
-                        });
-                    }
+            
                     this.$store.commit('setDisplay', { dvalue: true });
                     this.$store.commit('setOwner', { user: user.displayName });
                     this.$router.push("/home");
