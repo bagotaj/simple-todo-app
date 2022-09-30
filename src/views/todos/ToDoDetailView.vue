@@ -6,7 +6,7 @@
   <div class="divCenter" v-show="showField('todoText')" @focus="focusField('todoText')" @blur="blurField">
       <input class="p90" type="text" v-model="todoInputFields.todoText" /><span class="span10del" @click="blurField">+</span>
   </div>
-  <div class="divCenter" v-show="!showField('link')" @click="focusField('link')">
+  <div class="divCenter" v-show="!showField('link')">
     <a :href="todo.link" target="_blank" class="p90">{{ checkSnippetURLlength }}</a><span class="span10" @click="focusField('link')">+</span>
   </div>
   <div class="divCenter" v-if="checkSnippetURLlength" v-show="showField('link')" @focus="focusField('link')" @blur="blurField">
