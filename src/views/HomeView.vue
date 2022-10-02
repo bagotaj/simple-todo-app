@@ -52,7 +52,7 @@
   <style>
       form {
           max-width: 420px;
-          margin: 10px auto 30px auto;
+          margin: 0 auto 30px auto;
           background: white;
           text-align: left;
           padding: 40px;
@@ -71,6 +71,7 @@
           display: block;
           padding: 10px 6px;
           width: 100%;
+          max-width: 420px;
           box-sizing: border-box;
           border: none;
           border-bottom: 1px solid #ddd;
