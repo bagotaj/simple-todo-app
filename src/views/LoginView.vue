@@ -23,7 +23,7 @@
                 aria-describedby="emailHelp"
               />
               <div id="emailHelp" class="form-text">
-                Nem osztjuk meg az email címed harmadik féllel.
+                Nem osztjuk meg az email címed harmadik féllel
               </div>
             </div>
             <div class="mb-3">
