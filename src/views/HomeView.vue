@@ -5,7 +5,7 @@
       <label>Link:</label>
       <input type="url" v-model="link">
   
-      <div class="submit">
+      <div class="submit margin-top20">
           <button>Hozzáadás</button>
       </div>
     </form>
@@ -82,7 +82,6 @@
           background: #0b6dff;
           border: 0;
           padding: 10px 20px;
-          margin-top: 20px;
           color: white;
           border-radius: 20px;
           cursor: pointer;
@@ -93,5 +92,8 @@
       }
       .submit {
           text-align: center;
+      }
+      .margin-top20 {
+        margin-top: 20px;
       }
   </style>
