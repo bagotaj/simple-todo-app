@@ -12,8 +12,8 @@
   <div class="divCenter" v-if="checkSnippetURLlength" v-show="showField('link')" @focus="focusField('link')" @blur="blurField">
       <input class="p90" type="text" v-model="todoInputFields.link" /><span class="span10del" @click="blurField">+</span>
   </div>
-  <button @click="$store.commit('stopTimer', todo.id)" :class="{ stopped: $store.state.stopped[todo.id] }">Leállít</button>
-  <button class="done" @click="$store.dispatch('updateTodoField', {todoId: todo.id, task: { done: true }})">Kész</button>
+  <button @click="$store.commit('stopTimer', todo.id)" class="margin-top20" :class="{ stopped: $store.state.stopped[todo.id] }">Leállít</button>
+  <button class="done margin-top20" @click="$store.dispatch('updateTodoField', {todoId: todo.id, task: { done: true }})">Kész</button>
 </template>
 
 <script>
