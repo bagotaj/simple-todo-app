@@ -6,7 +6,7 @@
           v-if="errorMessage"
         >
           {{ errorMessage }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          <button type="button" class="margin-top20 marginRight10" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         <div class="margin-top-80" id="loginForm">
           <h1>Belépés</h1>
@@ -32,10 +32,10 @@
             placeholder="password123" v-model="inputPassword1" />
             </div>
             <div class="mb-3">
-              <button type="submit" class="normalbtn" id="submitButton">
+              <button type="submit" class="margin-top20 marginRight10" id="submitButton">
                 Belépés
               </button>
-              <button type="button" class="normalbtn stopped" id="switch-register" @click="moveToRegister">
+              <button type="button" class="margin-top20 marginRight10 stopped" id="switch-register" @click="moveToRegister">
                 Regisztráció
               </button>
             </div>
