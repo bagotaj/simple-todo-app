@@ -40,6 +40,8 @@
   }
   nav {
     padding: 60px 20px 40px 20px;
+    display: flex;
+    justify-content: center;
     font-size: 0.8em;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -61,7 +63,7 @@
     color: #FF3E24;
   }
 
-  .normalbtn {
+  .marginRight10 {
     margin-right: 10px;
   }
 </style>
