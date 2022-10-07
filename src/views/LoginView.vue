@@ -1,14 +1,10 @@
 <template>
-    <div class="loginContainer">
-        <div
-          class="container form-width margin-bottom-30 alert alert-danger alert-dismissible fade show"
-          role="alert"
-          v-if="errorMessage"
-        >
+    <div>
+      <div class="alert-box alert-center" role="alert" v-if="errorMessage">
           {{ errorMessage }}
-          <button type="button" class="margin-top20 marginRight10" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <div class="margin-top-80" id="loginForm">
+          <button type="button" class="redButton" aria-label="Close" @click="setErrorMessage">Bezár</button>
+      </div>
+      <div class="margin-top-80" id="loginForm">
           <h1>Belépés</h1>
           <form @submit.prevent="login">
             <div class="mb-3">
@@ -40,8 +36,8 @@
               </button>
             </div>
           </form>
-        </div>
       </div>
+    </div>
   </template>
   
   <script>
@@ -75,6 +71,9 @@
             },
             moveToRegister() {
                 this.$router.push("/register");
+            },
+            setErrorMessage() {
+                this.errorMessage = null;
             }
         }
   }
@@ -90,5 +89,22 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       font-weight: normal;
+    }
+    .alert-center {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 80px auto 0 auto;
+    }
+    .alert-box {
+      max-width: 420px;
+      background: #FF9090;
+      border: 0;
+      padding: 10px 20px;
+      color: white;
+      border-radius: 10px;
+    }
+    .redButton {
+      background: #FF3E24;
     }
   </style>
