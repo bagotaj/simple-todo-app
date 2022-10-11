@@ -55,9 +55,12 @@ export default createStore({
       state.owner = payload.user;
     },
     startTimer(state, payload) {
+      const min = 60000;
+      const max = 600000;
+      const time = Math.floor(Math.random() * (max - min) + min);
       const timerId = setInterval(() => {
         alert(payload.todo);
-      }, 600000);
+      }, time);
       state.timers[payload.todoId] = timerId;
     },
     stopTimer(state, payload) {
