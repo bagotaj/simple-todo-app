@@ -1,5 +1,6 @@
 <template>
   <NavBar />
+  <!-- <NavBarTest /> -->
   <router-view />
 </template>
 
@@ -7,8 +8,10 @@
   import { firebase } from "./composables/firebaseapikey";
   import { getAuth, onAuthStateChanged } from "firebase/auth";
   import NavBar from './components/NavBar.vue';
+  // import NavBarTest from './components/NavBarTest.vue';
   export default {
       name: "App",
+      // components: { NavBar, NavBarTest },
       components: { NavBar },
       mounted() {
         const auth = getAuth(firebase);
