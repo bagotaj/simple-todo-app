@@ -1,16 +1,16 @@
 <template>
   <p class="right fontsize12">{{ todo.owner }}</p>
   <div class="divCenter" v-show="!showField('todoText')" @click="focusField('todoText')">
-    <p class="p90" v-html="urlMatcherInTodo(todoInputFields.todoText)"></p><span class="span10" @click="focusField('todoText')">+</span>
+    <p class="p90" v-html="urlMatcherInTodo(todoInputFields.todoText)"></p><span class="span10" @click="focusField('todoText')"><i class="icon icon-create"></i></span>
   </div>
   <div class="divCenter" v-show="showField('todoText')" @focus="focusField('todoText')" @blur="blurField">
-      <input class="p90" type="text" v-model="todoInputFields.todoText" /><span class="span10del" @click="blurField">+</span>
+      <input class="p90" type="text" v-model="todoInputFields.todoText" /><span class="span10del" @click="blurField"><i class="icon icon-save"></i></span>
   </div>
   <div class="divCenter" v-show="!showField('link')">
-    <a :href="todo.link" target="_blank" class="p90">{{ checkSnippetURLlength }}</a><span class="span10" @click="focusField('link')">+</span>
+    <a :href="todo.link" target="_blank" class="p90">{{ checkSnippetURLlength }}</a><span class="span10" @click="focusField('link')"><i class="icon icon-create"></i></span>
   </div>
   <div class="divCenter" v-if="checkSnippetURLlength" v-show="showField('link')" @focus="focusField('link')" @blur="blurField">
-      <input class="p90" type="text" v-model="todoInputFields.link" /><span class="span10del" @click="blurField">+</span>
+      <input class="p90" type="text" v-model="todoInputFields.link" /><span class="span10del" @click="blurField"><i class="icon icon-save"></i></span>
   </div>
   <button @click="$store.commit('stopTimer', todo.id)" class="margin-top20" :class="{ stopped: $store.state.stopped[todo.id] }">Leállít</button>
   <button class="done margin-top20" @click="$store.dispatch('updateTodoField', {todoId: todo.id, task: { done: true }})">Kész</button>
