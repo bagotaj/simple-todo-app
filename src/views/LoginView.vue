@@ -70,7 +70,11 @@
                 });
             },
             moveToRegister() {
-                this.$router.push("/register");
+              let person = prompt("Please enter your name", "Harry Potter");
+              if (person != null) {
+                alert("Hello " + person + "! How are you today?")
+                }
+                // this.$router.push("/register");
             },
             setErrorMessage() {
                 this.errorMessage = null;
