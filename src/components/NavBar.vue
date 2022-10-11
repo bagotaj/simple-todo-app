@@ -4,7 +4,7 @@
       <div>
         <router-link class="marginRight10" to="/home">Home</router-link>
         <router-link class="marginRight10" :to="{ name: 'about'}">Az appról</router-link>
-        <router-link :to="{ name: 'todos'}">Teendők</router-link>
+        <router-link :to="{ name: 'todos' }">Teendők</router-link>
       </div>
       <button
         type="button"
@@ -35,7 +35,7 @@ export default {
           this.errorMessage = error.message;
           console.log(error.message);
           });
-      },
+      }
   }
 }
 </script>
