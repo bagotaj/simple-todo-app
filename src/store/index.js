@@ -27,7 +27,9 @@ export default createStore({
       state.todos = [];
     },
     addTodo(state, payload) {
-      state.todos.push(payload);
+      if(!payload.done) {
+        state.todos.push(payload);
+      }
     },
     setStopped(state, payload) {
       state.stopped[payload.todoId] = payload.stopped;
