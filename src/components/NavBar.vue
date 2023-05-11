@@ -6,14 +6,17 @@
         <router-link class="marginRight10" :to="{ name: 'about'}">Az appról</router-link>
         <router-link :to="{ name: 'todos' }">Teendők</router-link>
       </div>
-      <button
-        type="button"
-        class=""
-        value="logout"
-        @click="logout"
-        >
-        Kilépés
-      </button>
+      <div>
+        <p class="owner-text fontsize12">{{ $store.state.owner }}</p>
+        <button
+          type="button"
+          class=""
+          value="logout"
+          @click="logout"
+          >
+          Kilépés
+        </button>
+      </div>
     </div>
   </nav>
 </template>
@@ -47,5 +50,8 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  .owner-text {
+    color: #0d6efd;
   }
 </style>
